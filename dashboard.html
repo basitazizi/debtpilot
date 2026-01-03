@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DebtPilot • Dashboard</title>
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body>
+  <div class="bg-finance" aria-hidden="true"></div>
+<div class="orb o2" style="right:-220px; top:40px"></div>
+    <div class="orb o3" style="left:20%; bottom:-220px"></div>
+  </div>
+  <div class="grid-overlay" aria-hidden="true"></div>
+  <div class="layer">
+
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="./index.html">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>DebtPilot</h1>
+          <small>Dashboard</small>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="./index.html">Home</a>
+        <a class="btn" id="logoutBtn" href="#"><span class="dot"></span>Logout</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container main">
+    <div class="topbar">
+      <h2 class="h2">Overview</h2>
+      <div class="split" id="summaryBadges"></div>
+    </div>
+
+    <div class="panels">
+      <section class="panel">
+        <div class="p-head">
+          <h3>Your cards</h3>
+          <span class="badge"><span class="dot"></span>Saved to Firestore</span>
+        </div>
+        <div class="p-body">
+          <details id="addCardDetails" open>
+            <summary class="summaryRow">
+              <span class="badge accent"><span class="dot"></span>Add a card</span>
+              <span class="small">Add your balances and minimums — we’ll do the math.</span>
+            </summary>
+            <form id="cardForm">
+            <div class="row">
+              <div class="field">
+                <div class="label">Bank</div>
+                <input class="input" id="bank" required placeholder="Chase, AmEx, Citi..." />
+              </div>
+              <div class="field">
+                <div class="label">Card nickname</div>
+                <input class="input" id="nickname" required placeholder="Freedom, Blue Cash..." />
+              </div>
+            </div>
+            <div class="row">
+              <div class="field">
+                <div class="label">Balance</div>
+                <input class="input" id="balance" required placeholder="1280" />
+              </div>
+              <div class="field">
+                <div class="label">APR %</div>
+                <input class="input" id="apr" required placeholder="29.99" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="field">
+                <div class="label">Minimum payment</div>
+                <input class="input" id="minPayment" required placeholder="35" />
+              </div>
+              <div class="field">
+                <div class="label">Due date (YYYY-MM-DD)</div>
+                <input class="input" id="dueDate" placeholder="2026-01-15" />
+              </div>
+            </div>
+            <div class="actions">
+              <button class="btn primary" type="submit"><span class="dot"></span>Add card</button>
+              <span class="small">Tip: keep minimum payments accurate for best results.</span>
+            </div>
+          </form>
+          </details>
+
+          <div class="sep"></div>
+
+          <table class="table" aria-label="Cards table">
+            <thead>
+              <tr>
+                <th>Card</th>
+                <th>Balance</th>
+                <th>APR</th>
+                <th>Min</th>
+                <th>Due</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="cardsTbody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="p-head">
+          <h3>Payoff plan</h3>
+          <span class="badge">Explain + simulate</span>
+        </div>
+        <div class="p-body">
+          <form id="planForm" class="grid" style="gap:12px">
+            <div class="row">
+              <div class="field">
+                <div class="label">Monthly budget (total you can pay)</div>
+                <input class="input" id="monthlyBudget" placeholder="350" />
+              </div>
+              <div class="field">
+                <div class="label">Strategy</div>
+                <select class="input" id="strategy">
+                  <option value="avalanche">Avalanche (highest APR first)</option>
+                  <option value="snowball">Snowball (smallest balance first)</option>
+                </select>
+              </div>
+            </div>
+            <button class="btn primary" type="submit"><span class="dot"></span>Build plan</button>
+          </form>
+
+          <div class="sep"></div>
+
+          <div id="planMeta" class="small"></div>
+
+          <div class="sep"></div>
+
+          <table class="table" aria-label="Plan table">
+            <thead>
+              <tr>
+                <th>Card</th>
+                <th>Minimum</th>
+                <th>Extra</th>
+                <th>Total this month</th>
+                <th>Reason</th>
+              </tr>
+            </thead>
+            <tbody id="planTbody"></tbody>
+          </table>
+
+          <hr class="sep" />
+
+          <div class="grid" style="gap:12px">
+            <div class="panel" style="background:rgba(0,0,0,.22)">
+              <div class="p-head">
+                <h3>Insights</h3>
+                <span class="badge accent"><span class="dot"></span>Explain</span>
+              </div>
+              <div class="p-body">
+                <div id="insightsTop" class="split" style="margin-bottom:10px"></div>
+                <div id="whyBox" class="grid" style="gap:8px"></div>
+                <div style="margin-top:10px; color:rgba(255,255,255,.55); font-size:12px; line-height:1.6">
+                  Estimates assume balances stay the same aside from your payments (no new spending).
+                </div>
+              </div>
+            </div>
+
+            <div class="panel" style="background:rgba(0,0,0,.22)">
+              <div class="p-head">
+                <h3>Timeline preview</h3>
+                <span class="badge">First 12 months</span>
+              </div>
+              <div class="p-body">
+                <table class="table" aria-label="Timeline">
+                  <thead>
+                    <tr>
+                      <th>Month</th>
+                      <th>Interest</th>
+                      <th>Total paid</th>
+                      <th>Focus card paid</th>
+                    </tr>
+                  </thead>
+                  <tbody id="timelineTbody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:12px; color:rgba(255,255,255,.55); font-size:12px; line-height:1.6">
+            This plan includes a month‑by‑month simulation estimate, interest impact, and a clear reason for the payoff order.
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  </div>
+  <div id="toast" role="status" aria-live="polite"></div>
+<script type="module" src="./js/dashboard.js"></script>
+</body>
+</html>

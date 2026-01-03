@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DebtPilot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .home-wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .home-inner {
+      max-width: 900px;
+      padding: 40px 20px;
+    }
+    
+.hero-title {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-size: clamp(3rem, 7vw, 4.8rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+    .hero-title span {
+      color: var(--accent-green);
+      text-shadow: 0 0 40px rgb(255, 255, 255);
+    }
+    .home-actions {
+      margin-top: 40px;
+      display: flex;
+      gap: 18px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .home-actions a {
+      padding: 14px 28px;
+      border-radius: 999px;
+      font-size: 16px;
+      font-weight: 500;
+      text-decoration: none;
+    }
+    .btn-primary {
+      background: var(--accent-green);
+      color: #000;
+    }
+    .btn-ghost {
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #fff;
+    }
+    .how-grid {
+      margin-top: 70px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+    }
+    .how-box {
+      padding: 28px 22px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow:
+        0 0 40px rgba(255,255,255,0.03),
+        inset 0 0 20px rgba(26,224,158,0.05);
+    }
+    .how-box h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+    }
+    .how-box p {
+      margin: 0;
+      color: rgba(255,255,255,0.7);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="home-wrap">
+    <div class="home-inner">
+      <h1 class="hero-title">
+        <span>DebtPilot</span> helps you manage your debt smart
+      </h1>
+
+      <div class="home-actions">
+        <a href="signup.html" class="btn-primary">Sign up</a>
+        <a href="login.html" class="btn-ghost">Log in</a>
+      </div>
+
+      <div class="how-grid">
+        <div class="how-box">
+          <h3>Add your cards</h3>
+          <p>Enter balances, APRs, and minimum payments in one secure place.</p>
+        </div>
+        <div class="how-box">
+          <h3>Set a budget</h3>
+          <p>Tell DebtPilot how much you can pay each month.</p>
+        </div>
+        <div class="how-box">
+          <h3>Follow the plan</h3>
+          <p>Get a clear payoff order with reasons and interest impact.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
