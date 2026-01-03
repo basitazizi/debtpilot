@@ -363,3 +363,100 @@ input:focus, select:focus, textarea:focus {
   font-size: 12px;
   color: rgba(255,255,255,0.60);
 }
+
+
+/* ===== Mobile UX upgrade (dashboard) ===== */
+@media (max-width: 520px){
+  /* tighter header */
+  header.nav .nav-inner{
+    padding: 12px 12px;
+  }
+  header.nav .brand h1{
+    font-size: 16px;
+  }
+  header.nav .brand small{
+    display:none; /* remove "Dashboard" subtitle on tiny screens */
+  }
+  header.nav .nav-links a{
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+
+  /* page spacing */
+  .container, .container-dash{
+    padding: 14px 12px !important;
+  }
+  h2, h3{
+    letter-spacing: -0.02em;
+  }
+  h2{ font-size: 26px; margin: 10px 0 10px; }
+  .panel{ padding: 14px 12px; border-radius: 16px; }
+
+  /* Summary chips: 2-column grid to avoid awkward wrapping */
+  #summaryBadges{
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  #summaryBadges .badge, #summaryBadges .pill{
+    width: 100%;
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    padding: 10px 12px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  /* Make the interest pill full width */
+  #summaryBadges .badge:last-child, #summaryBadges .pill:last-child{
+    grid-column: 1 / -1;
+  }
+
+  /* Card form: stack into single column */
+  .row{ display:block !important; }
+  .row > *{ width:100% !important; }
+
+  /* Inputs larger tap targets */
+  input, select, textarea{
+    padding: 14px 12px;
+    font-size: 16px; /* prevents iOS zoom */
+    border-radius: 14px;
+  }
+
+  /* Buttons full width on mobile */
+  button, .btn, .btn-primary, .btn-ghost, .nav-links a.primary{
+    width: 100%;
+  }
+  .actions-row, .home-actions{
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  /* Tables: card-like mobile list */
+  .table{
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .table th, .table td{
+    padding: 12px 12px;
+    font-size: 13px;
+  }
+
+  /* Reduce huge empty gaps between sections */
+  .panel + .panel{ margin-top: 14px; }
+}
+
+
+
+@media (max-width: 860px){
+  #summaryBadges{
+    display:flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  #summaryBadges .badge, #summaryBadges .pill{
+    flex: 1 1 220px;
+  }
+}
+
