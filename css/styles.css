@@ -559,3 +559,58 @@ html, body{ width:100%; overflow-x:hidden; }
   footer{ padding: 18px 10px !important; font-size: 12px !important; }
 }
 
+
+
+/* ===== Mobile redesign: tables -> cards (no horizontal scroll) ===== */
+@media (max-width: 520px){
+  .table, table{
+    width: 100% !important;
+  }
+  table thead{
+    display:none !important;
+  }
+  table, tbody, tr, td{
+    display:block !important;
+    width: 100% !important;
+  }
+  table tbody tr{
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 16px;
+    padding: 10px 10px;
+    margin: 10px 0;
+    box-shadow: 0 0 28px rgba(225,29,72,0.10);
+  }
+  table tbody td{
+    display:flex !important;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 10px 8px !important;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    font-size: 14px !important;
+  }
+  table tbody td:last-child{
+    border-bottom: none;
+  }
+  table tbody td::before{
+    content: attr(data-label);
+    color: rgba(255,255,255,0.62);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  /* Make action buttons not shrink */
+  .icon-btn{ width:auto !important; }
+}
+
+
+
+@media (max-width: 520px){
+  /* reduce nested splits inside panels */
+  .split{ display:grid !important; grid-template-columns: 1fr !important; }
+  .badge{ width: 100% !important; justify-content: space-between !important; }
+  /* keep the top summary as cards */
+  #summaryBadges{ grid-template-columns: 1fr 1fr !important; }
+  #summaryBadges .badge:last-child{ grid-column: 1 / -1 !important; }
+}
+

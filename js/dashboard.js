@@ -84,12 +84,12 @@ function renderCards(cards){
   for (const c of cards){
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td>${escapeHtml(c.bank)} • ${escapeHtml(c.nickname)}</td>
-      <td class="mono">${money(c.balance||0)}</td>
-      <td class="mono">${pct(c.apr||0)}</td>
-      <td class="mono">${money(c.minPayment||0)}</td>
-      <td class="mono">${escapeHtml(c.dueDate||"—")}</td>
-      <td>
+      <td data-label="Card">${escapeHtml(c.bank)} • ${escapeHtml(c.nickname)}</td>
+      <td data-label="Balance" class="mono">${money(c.balance||0)}</td>
+      <td data-label="APR" class="mono">${pct(c.apr||0)}</td>
+      <td data-label="Minimum" class="mono">${money(c.minPayment||0)}</td>
+      <td data-label="Due" class="mono">${escapeHtml(c.dueDate||"—")}</td>
+      <td data-label="Actions">
         <button class="icon-btn danger" data-del="${c.id}">Delete</button>
       </td>
     `;
@@ -161,11 +161,11 @@ function renderPlan(plan){
   for (const r of plan.rows){
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td>${escapeHtml(r.label)}</td>
-      <td class="mono">${money(r.min)}</td>
-      <td class="mono">${money(r.extra)}</td>
-      <td class="mono">${money(r.total)}</td>
-      <td>${escapeHtml(r.reason)}</td>
+      <td data-label="Card">${escapeHtml(r.label)}</td>
+      <td data-label="Minimum" class="mono">${money(r.min)}</td>
+      <td data-label="Extra" class="mono">${money(r.extra)}</td>
+      <td data-label="Total" class="mono">${money(r.total)}</td>
+      <td data-label="Reason">${escapeHtml(r.reason)}</td>
     `;
     el.planTbody.appendChild(tr);
   }
@@ -212,10 +212,10 @@ function renderInsights(sim){
         const focusPaid = focusId ? (row.payments.find(p=>p.id===focusId)?.pay || 0) : 0;
         const tr = document.createElement("tr");
         tr.innerHTML = `
-          <td class="mono">${row.month}</td>
-          <td class="mono">${money(row.interest||0)}</td>
-          <td class="mono">${money(totalPaid)}</td>
-          <td class="mono">${money(focusPaid)}</td>
+          <td data-label="Month" class="mono">${row.month}</td>
+          <td data-label="Interest" class="mono">${money(row.interest||0)}</td>
+          <td data-label="Total paid" class="mono">${money(totalPaid)}</td>
+          <td data-label="Focus card paid" class="mono">${money(focusPaid)}</td>
         `;
         el.timelineTbody.appendChild(tr);
       }
