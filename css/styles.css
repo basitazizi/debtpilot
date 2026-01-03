@@ -460,3 +460,37 @@ input:focus, select:focus, textarea:focus {
   }
 }
 
+
+
+/* ===== HARD MOBILE FULL-WIDTH FIX ===== */
+html, body{ width:100%; overflow-x:hidden; }
+
+/* Many layouts use grid. Force to 1 column on phones. */
+@media (max-width: 720px){
+  .row, .grid, .dash-grid, .split, .actions-row{
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+  .row > *, .grid > *, .dash-grid > *, .split > *{
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .panel, .card, .box{
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+/* If any section uses flex rows, make them stack */
+@media (max-width: 520px){
+  .row, .actions-row, .home-actions{
+    display:flex !important;
+    flex-direction: column !important;
+  }
+  .row > *, .actions-row > *, .home-actions > *{
+    width: 100% !important;
+  }
+}
+
