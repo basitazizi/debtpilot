@@ -17,8 +17,7 @@
   <header class="nav">
     <div class="container nav-inner">
       <a class="brand" href="./index.html">
-        <div class="logo" aria-hidden="true"></div>
-        <div>
+<div>
           <h1>DebtPilot</h1>
           <small>Dashboard</small>
         </div>
@@ -195,5 +194,17 @@
   </div>
   <div id="toast" role="status" aria-live="polite"></div>
 <script type="module" src="./js/dashboard.js"></script>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span>© <span id="year"></span> DebtPilot. All rights reserved.</span>
+    <span class="divider">•</span>
+    <span>Designed by <strong>Basit A.</strong></span>
+  </div>
+</footer>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
 </body>
 </html>
