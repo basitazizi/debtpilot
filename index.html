@@ -1,90 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>DebtPilot</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DebtPilot – Take Control of Your Debt</title>
+  <link rel="stylesheet" href="css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <style>
-    .home-wrap{ min-height: calc(100vh - 70px); display:flex; align-items:center; justify-content:center; text-align:center; }
-    .home-inner{ max-width: 980px; padding: 28px 18px 12px; }
-    .hero-title{
-      font-family: 'Space Grotesk', system-ui, sans-serif;
-      font-size: clamp(2.6rem, 9vw, 4.7rem);
-      font-weight: 700;
-      letter-spacing: -0.05em;
-      line-height: 1.02;
-      margin: 0;
-    }
-    .hero-title .accent{ color: var(--accent); text-shadow: 0 0 36px var(--accent-glow); }
-    .home-actions{ margin-top: 26px; display:flex; gap: 14px; justify-content:center; flex-wrap:wrap; }
-    .home-actions a{ padding: 14px 28px; border-radius: 999px; font-size: 16px; font-weight: 600; text-decoration:none; }
-    .btn-primary{ background: var(--accent); color:#fff; box-shadow: 0 0 28px var(--accent-glow); border: 1px solid rgba(225,29,72,0.65);}
-    .btn-ghost{ border: 1px solid rgba(255,255,255,0.22); color:#fff; background: rgba(255,255,255,0.02);}
-    .how-grid{ margin-top: 48px; display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .how-box{ padding: 22px 18px; border-radius: 18px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 0 26px rgba(255,255,255,0.03), 0 0 22px var(--accent-soft);}
-    .how-box h3{ margin:0 0 8px; font-size: 18px; }
-    .how-box p{ margin:0; color: rgba(255,255,255,0.68); line-height: 1.55; font-size: 14px; }
-    @media (max-width: 860px){ .how-grid{ grid-template-columns: 1fr; } }
-  </style>
+  <!-- Google font for better typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  
-<header class="topbar">
-  
-  <div class="brand-pill">
-    <div class="brand-name">DebtPilot</div>
-    <div class="brand-sub">Smart payoff planner</div>
-  </div>
-
-  </div>
-  <nav class="nav-right">
-    <a class="navlink" href="index.html">Home</a>
-    <a class="navlink" href="login.html">Login</a>
-  </nav>
-</header>
-
-  <main class="home-wrap">
-    <div class="home-inner">
-      <h1 class="hero-title">
-        <span class="accent">DebtPilot</span> helps you manage your debt smart
-      </h1>
-
-      <div class="home-actions">
-        <a href="signup.html" class="btn-primary">Sign up</a>
-        <a href="login.html" class="btn-ghost">Log in</a>
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <div class="logo">
+        <span style="font-weight:800;color:#e0373f;">DebtPilot</span>
       </div>
-
-      <section class="how-grid" aria-label="How it works">
-        <div class="how-box">
-          <h3>Add your cards</h3>
-          <p>Enter balances, APRs, and minimum payments in one secure place.</p>
-        </div>
-        <div class="how-box">
-          <h3>Set a budget</h3>
-          <p>Tell DebtPilot how much you can pay each month.</p>
-        </div>
-        <div class="how-box">
-          <h3>Follow the plan</h3>
-          <p>Get a clear payoff order with reasons and interest impact.</p>
-        </div>
-      </section>
+      <!-- Navigation items removed per user request -->
+      <div class="auth-links">
+        <a href="login.html" class="btn btn-secondary">Login</a>
+        <a href="signup.html" class="btn btn-primary">Sign Up</a>
+      </div>
     </div>
-  </main>
+  </header>
 
-<footer class="site-footer">
-  <div class="footer-inner">
-    <span>© <span id="year"></span> DebtPilot. All rights reserved.</span>
-    <span class="divider">•</span>
-    <span>Designed by <strong>Basit A.</strong></span>
-  </div>
-</footer>
-<script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <h1><span class="primary">Take Control of Your Debt</span><br>With AI‑Powered Strategy</h1>
+      <p>DebtPilot analyzes your credit cards and creates a personalized payoff plan. Get out of debt faster with intelligent recommendations.</p>
+      <div class="cta-buttons">
+        <a href="signup.html" class="btn btn-primary">Get Started Free</a>
+        <a href="#features" class="btn btn-secondary">Learn More</a>
+      </div>
+    </div>
+  </section>
 
+  <!-- Features -->
+  <section id="features" class="features">
+    <div class="container">
+      <h2>Powerful Features for Debt Freedom</h2>
+      <p class="section-subtitle">Everything you need to eliminate debt efficiently</p>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="icon">💳</div>
+          <h3>Multi‑Card Management</h3>
+          <p>Add unlimited credit cards with APR, balance, and minimum payment tracking in one place.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">🧠</div>
+          <h3>AI Recommendations</h3>
+          <p>Get intelligent suggestions on which cards to pay first based on APR or minimum payment strategy.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">📅</div>
+          <h3>Payoff Timeline</h3>
+          <p>Set your target payoff date and budget to see exactly when you'll be debt‑free.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it Works -->
+  <section id="how" class="how-it-works">
+    <div class="container">
+      <h2>How DebtPilot Works</h2>
+      <p class="section-subtitle">Four simple steps to debt freedom</p>
+      <div class="steps">
+        <div class="step">
+          <div class="circle">1</div>
+          <h4>Add Your Cards</h4>
+          <p>Enter credit card details including balance, APR, and minimum payment.</p>
+        </div>
+        <div class="step">
+          <div class="circle">2</div>
+          <h4>Set Your Budget</h4>
+          <p>Tell us how much you can allocate monthly toward debt payments.</p>
+        </div>
+        <div class="step">
+          <div class="circle">3</div>
+          <h4>Get AI Strategy</h4>
+          <p>Our AI analyzes and recommends the optimal payoff strategy for you.</p>
+        </div>
+        <div class="step">
+          <div class="circle">4</div>
+          <h4>Track Progress</h4>
+          <p>Watch your debt decrease as you follow the plan and reach milestones.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="pricing">
+    <div class="container">
+      <h2>Simple, Transparent Pricing</h2>
+      <p class="section-subtitle">Choose the plan that works for you</p>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3>Free</h3>
+          <p class="price">$0<span style="font-size:1rem;font-weight:400;">/month</span></p>
+          <ul>
+            <li>Up to 3 credit cards</li>
+            <li>Basic AI recommendations</li>
+            <li>Payment tracking</li>
+          </ul>
+          <a href="signup.html" class="btn btn-primary plan-btn">Get Started</a>
+        </div>
+        <div class="pricing-card highlight">
+          <h3>Pro</h3>
+          <p class="price">$9.99<span style="font-size:1rem;font-weight:400;">/month</span></p>
+          <ul>
+            <li>Unlimited credit cards</li>
+            <li>Advanced AI strategy</li>
+            <li>Payment reminders</li>
+            <li>Progress analytics</li>
+            <li>Priority support</li>
+          </ul>
+          <a href="signup.html" class="btn btn-primary plan-btn">Get Started</a>
+        </div>
+        <div class="pricing-card">
+          <h3>Enterprise</h3>
+          <p class="price">Custom</p>
+          <ul>
+            <li>Everything in Pro</li>
+            <li>White‑label solution</li>
+            <li>API access</li>
+            <li>Dedicated support</li>
+          </ul>
+          <a href="#" class="btn btn-secondary plan-btn">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="cta">
+    <div class="container">
+      <h2>Ready to Become Debt‑Free?</h2>
+      <p>Join thousands of users who've taken control of their finances with DebtPilot</p>
+      <a href="signup.html" class="btn btn-primary">Start Your Journey Today</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" id="about">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>DebtPilot</h4>
+          <p>AI‑powered debt management for a brighter financial future.</p>
+        </div>
+        <div>
+          <h4>Product</h4>
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#how">How It Works</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Security</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        © 2026 DebtPilot. All rights reserved.
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

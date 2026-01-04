@@ -1,210 +1,180 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>DebtPilot • Dashboard</title>
-  <link rel="stylesheet" href="./css/styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DebtPilot – Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="bg-finance" aria-hidden="true"></div>
-<div class="orb o2" style="right:-220px; top:40px"></div>
-    <div class="orb o3" style="left:20%; bottom:-220px"></div>
-  </div>
-  <div class="grid-overlay" aria-hidden="true"></div>
-  <div class="layer">
-
-  <header class="nav">
-    <div class="container nav-inner">
-      <a class="brand" href="./index.html">
-<div>
-          <h1>DebtPilot</h1>
-          <small>Dashboard</small>
+  <div class="dashboard-wrapper">
+    <!-- Sidebar removed for streamlined dashboard -->
+    <!-- Main content -->
+    <main class="dashboard-content">
+      <div class="dashboard-header">
+        <!-- Back to Home button -->
+        <a href="index.html" class="btn btn-secondary" style="margin-right:1rem;">← Home</a>
+        <h1>Control Center <span class="mode-badge" id="mode-badge">AVALANCHE MODE</span></h1>
+        <div class="dashboard-actions">
+          <a href="profile.html" class="btn btn-secondary" style="margin-right:0.5rem;">Profile</a>
+          <button class="btn btn-primary" id="addCardBtn">+ Add Card</button>
         </div>
-      </a>
-      <div class="nav-links">
-        <a href="./index.html">Home</a>
-        <a class="btn" id="logoutBtn" href="#"><span class="dot"></span>Logout</a>
       </div>
-    </div>
-  </header>
-
-  <main class="container main">
-    <div class="topbar">
-      <h2 class="h2">Overview</h2>
-      <div class="split" id="summaryBadges"></div>
-    </div>
-
-    <div class="panels">
-      <section class="panel">
-        <div class="p-head">
-          <h3>Your cards</h3>
-          <span class="badge"><span class="dot"></span>Saved to Firestore</span>
+      <!-- Metrics -->
+      <section class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-value" id="metric-total-debt">$0</div>
+          <div class="metric-label">Total Debt</div>
         </div>
-        <div class="p-body">
-          <details id="addCardDetails" open>
-            <summary class="summaryRow">
-              <span class="badge accent"><span class="dot"></span>Add a card</span>
-              <span class="small">Add your balances and minimums — we’ll do the math.</span>
-            </summary>
-            <form id="cardForm">
-            <div class="row">
-              <div class="field">
-                <div class="label">Bank</div>
-                <input class="input" id="bank" required placeholder="Chase, AmEx, Citi..." />
-              </div>
-              <div class="field">
-                <div class="label">Card nickname</div>
-                <input class="input" id="nickname" required placeholder="Freedom, Blue Cash..." />
-              </div>
-            </div>
-            <div class="row">
-              <div class="field">
-                <div class="label">Balance</div>
-                <input class="input" id="balance" required placeholder="1280" />
-              </div>
-              <div class="field">
-                <div class="label">APR %</div>
-                <input class="input" id="apr" required placeholder="29.99" />
-              </div>
-            </div>
-            <div class="row">
-              <div class="field">
-                <div class="label">Minimum payment</div>
-                <input class="input" id="minPayment" required placeholder="35" />
-              </div>
-              <div class="field">
-                <div class="label">Due date (YYYY-MM-DD)</div>
-                <input class="input" id="dueDate" placeholder="2026-01-15" />
-              </div>
-            </div>
-            <div class="actions">
-              <button class="btn primary" type="submit"><span class="dot"></span>Add card</button>
-              <span class="small">Tip: keep minimum payments accurate for best results.</span>
-            </div>
-          </form>
-          </details>
-
-          <div class="sep"></div>
-
-          <table class="table" aria-label="Cards table">
-            <thead>
-              <tr>
-                <th>Card</th>
-                <th>Balance</th>
-                <th>APR</th>
-                <th>Min</th>
-                <th>Due</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody id="cardsTbody"></tbody>
-          </table>
+        <div class="metric-card">
+          <div class="metric-value" id="metric-monthly-interest">$0</div>
+          <div class="metric-label">Monthly Interest</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value" id="metric-min-pay">$0</div>
+          <div class="metric-label">Min. Payment</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value" id="metric-active-cards">0</div>
+          <div class="metric-label">Active Cards</div>
         </div>
       </section>
-
-      <section class="panel">
-        <div class="p-head">
-          <h3>Payoff plan</h3>
-          <span class="badge">Explain + simulate</span>
+      <!-- Promo alert -->
+      <div class="promo-alert" id="promo-alert">
+        <div class="alert-message" id="promo-message">
+          <!-- Message set via JS -->
         </div>
-        <div class="p-body">
-          <form id="planForm" class="grid" style="gap:12px">
-            <div class="row">
-              <div class="field">
-                <div class="label">Monthly budget (total you can pay)</div>
-                <input class="input" id="monthlyBudget" placeholder="350" />
-              </div>
-              <div class="field">
-                <div class="label">Strategy</div>
-                <select class="input" id="strategy">
-                  <option value="avalanche">Avalanche (highest APR first)</option>
-                  <option value="snowball">Snowball (smallest balance first)</option>
-                </select>
-              </div>
-            </div>
-            <button class="btn primary" type="submit"><span class="dot"></span>Build plan</button>
-          </form>
-
-          <div class="sep"></div>
-
-          <div id="planMeta" class="small"></div>
-
-          <div class="sep"></div>
-
-          <table class="table" aria-label="Plan table">
-            <thead>
-              <tr>
-                <th>Card</th>
-                <th>Minimum</th>
-                <th>Extra</th>
-                <th>Total this month</th>
-                <th>Reason</th>
-              </tr>
-            </thead>
-            <tbody id="planTbody"></tbody>
-          </table>
-
-          <hr class="sep" />
-
-          <div class="grid" style="gap:12px">
-            <div class="panel" style="background:rgba(0,0,0,.22)">
-              <div class="p-head">
-                <h3>Insights</h3>
-                <span class="badge accent"><span class="dot"></span>Explain</span>
-              </div>
-              <div class="p-body">
-                <div id="insightsTop" class="split" style="margin-bottom:10px"></div>
-                <div id="whyBox" class="grid" style="gap:8px"></div>
-                <div style="margin-top:10px; color:rgba(255,255,255,.55); font-size:12px; line-height:1.6">
-                  Estimates assume balances stay the same aside from your payments (no new spending).
-                </div>
-              </div>
-            </div>
-
-            <div class="panel" style="background:rgba(0,0,0,.22)">
-              <div class="p-head">
-                <h3>Timeline preview</h3>
-                <span class="badge">First 12 months</span>
-              </div>
-              <div class="p-body">
-                <table class="table" aria-label="Timeline">
-                  <thead>
-                    <tr>
-                      <th>Month</th>
-                      <th>Interest</th>
-                      <th>Total paid</th>
-                      <th>Focus card paid</th>
-                    </tr>
-                  </thead>
-                  <tbody id="timelineTbody"></tbody>
-                </table>
-              </div>
-            </div>
+        <div class="alert-actions">
+          <button class="btn btn-secondary" id="adjustPlanBtn">Adjust Plan</button>
+          <button class="btn btn-secondary" id="dismissAlertBtn">Dismiss</button>
+        </div>
+      </div>
+      <!-- Budget Section -->
+      <section class="budget-section">
+        <h2>Your Budget</h2>
+        <input type="number" id="budget-input" placeholder="Enter monthly budget" style="width:100%;padding:0.5rem;background-color:#111;border:1px solid #333;border-radius:6px;color:#ddd;margin-bottom:1rem;" />
+        <div class="budget-bar">
+          <div class="bar-min" id="budget-bar-min" style="width:0%"></div>
+          <div class="bar-extra" id="budget-bar-extra" style="left:0;width:0%"></div>
+        </div>
+        <div class="budget-details">
+          <div>Min: <span id="budget-min-display">$0</span></div>
+          <div>Extra to Focus Card: <span id="budget-extra-display">$0</span></div>
+        </div>
+      </section>
+      <!-- Strategy Selection -->
+      <section id="strategy" class="strategy-section">
+        <div class="strategy-card" data-mode="avalanche">
+          <h3>Avalanche</h3>
+          <p>Highest APR first</p>
+        </div>
+        <div class="strategy-card" data-mode="snowball">
+          <h3>Snowball</h3>
+          <p>Smallest balance first</p>
+        </div>
+        <div class="strategy-card" data-mode="manual">
+          <h3>Manual</h3>
+          <p>You choose priority</p>
+        </div>
+      </section>
+      <!-- Cards list -->
+      <section id="cards" class="cards-section">
+        <h2 style="margin-bottom:1rem;font-size:1.2rem;">Your Credit Cards</h2>
+        <div class="cards-list" id="cards-list">
+          <!-- Card items added via JS -->
+        </div>
+      </section>
+      <!-- Timeline & What-If -->
+      <section id="timeline" class="timeline-section">
+        <div class="timeline-chart">
+          <h3 style="margin-bottom:0.5rem;">Payoff Timeline</h3>
+          <svg id="timeline-svg"></svg>
+          <div class="timeline-info">
+            <div>Debt Free By<br><strong id="debt-free-date">—</strong></div>
+            <div>Total Interest<br><strong id="total-interest">—</strong></div>
           </div>
-
-          <div style="margin-top:12px; color:rgba(255,255,255,.55); font-size:12px; line-height:1.6">
-            This plan includes a month‑by‑month simulation estimate, interest impact, and a clear reason for the payoff order.
+        </div>
+        <div class="what-if">
+          <h3 style="margin-bottom:0.5rem;">What‑If Scenarios</h3>
+          <div id="what-if-list">
+            <!-- Scenarios generated by JS -->
           </div>
         </div>
       </section>
+      <!-- AI Insights -->
+      <section id="insights" class="insights-section">
+        <h2>AI Insights & Recommendations</h2>
+        <div id="insights-list">
+          <!-- Insights populated via JS -->
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Templates or hidden elements for card input etc. can go here -->
+  <div id="card-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);align-items:center;justify-content:center;">
+    <div style="background:#0f0f0f;padding:1.5rem;border-radius:10px;width:90%;max-width:400px;">
+      <h3 style="margin-bottom:1rem;">Add a Card</h3>
+      <form id="card-form" style="display:flex;flex-direction:column;gap:0.75rem;">
+        <div>
+          <label for="card-bank" style="font-size:0.85rem;color:#888;">Bank</label>
+          <input id="card-bank" type="text" placeholder="Chase, AmEx, Citi…" required style="width:100%;padding:0.5rem;background:#111;border:1px solid #333;border-radius:6px;color:#ddd;">
+        </div>
+        <div>
+          <label for="card-name" style="font-size:0.85rem;color:#888;">Card nickname</label>
+          <input id="card-name" type="text" placeholder="Freedom, Blue Cash…" required style="width:100%;padding:0.5rem;background:#111;border:1px solid #333;border-radius:6px;color:#ddd;">
+        </div>
+        <div>
+          <label for="card-balance" style="font-size:0.85rem;color:#888;">Balance</label>
+          <input id="card-balance" type="number" step="0.01" placeholder="0" required style="width:100%;padding:0.5rem;background:#111;border:1px solid #333;border-radius:6px;color:#ddd;">
+        </div>
+        <div>
+          <label for="card-apr" style="font-size:0.85rem;color:#888;">APR %</label>
+          <input id="card-apr" type="number" step="0.01" placeholder="0" required style="width:100%;padding:0.5rem;background:#111;border:1px solid #333;border-radius:6px;color:#ddd;">
+        </div>
+        <div>
+          <label for="card-min" style="font-size:0.85rem;color:#888;">Minimum payment</label>
+          <input id="card-min" type="number" step="0.01" placeholder="0" required style="width:100%;padding:0.5rem;background:#111;border:1px solid #333;border-radius:6px;color:#ddd;">
+        </div>
+        <div>
+          <label for="card-due" style="font-size:0.85rem;color:#888;">Due date (YYYY-MM-DD)</label>
+          <input id="card-due" type="date" required style="width:100%;padding:0.5rem;background:#111;border:1px solid #333;border-radius:6px;color:#ddd;">
+        </div>
+        <div>
+          <label for="card-promo" style="font-size:0.85rem;color:#888;">Promo end date (optional)</label>
+          <input id="card-promo" type="date" style="width:100%;padding:0.5rem;background:#111;border:1px solid #333;border-radius:6px;color:#ddd;">
+        </div>
+        <div style="display:flex;flex-direction:column;gap:0.25rem;">
+          <label style="font-size:0.85rem;color:#888;">Autopay &amp; No Minimum</label>
+          <div style="display:flex;gap:1rem;align-items:center;">
+            <label style="font-size:0.85rem;color:#aaa;">
+              <input id="card-autopay" type="checkbox" style="margin-right:0.3rem;" /> Autopay enabled
+            </label>
+            <label style="font-size:0.85rem;color:#aaa;">
+              <input id="card-nomin" type="checkbox" style="margin-right:0.3rem;" /> No minimum due
+            </label>
+          </div>
+        </div>
+        <div>
+          <label for="card-type" style="font-size:0.85rem;color:#888;">Balance type</label>
+          <select id="card-type" style="width:100%;padding:0.5rem;background:#111;border:1px solid #333;border-radius:6px;color:#ddd;">
+            <option value="purchase">Purchase</option>
+            <option value="cash">Cash advance</option>
+            <option value="transfer">Balance transfer</option>
+          </select>
+        </div>
+        <div>
+          <label for="card-limit" style="font-size:0.85rem;color:#888;">Credit limit</label>
+          <input id="card-limit" type="number" step="0.01" placeholder="0" style="width:100%;padding:0.5rem;background:#111;border:1px solid #333;border-radius:6px;color:#ddd;">
+        </div>
+        <button type="submit" class="btn btn-primary">Add card</button>
+        <button type="button" id="closeModalBtn" class="btn btn-secondary">Cancel</button>
+      </form>
     </div>
-  </main>
-
   </div>
-  <div id="toast" role="status" aria-live="polite"></div>
-<script type="module" src="./js/dashboard.js"></script>
-
-<footer class="site-footer">
-  <div class="footer-inner">
-    <span>© <span id="year"></span> DebtPilot. All rights reserved.</span>
-    <span class="divider">•</span>
-    <span>Designed by <strong>Basit A.</strong></span>
-  </div>
-</footer>
-<script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>
-
+  <script type="module" src="js/dashboard.js"></script>
 </body>
 </html>

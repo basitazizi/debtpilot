@@ -1,75 +1,54 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>DebtPilot • Signup</title>
-  <link rel="stylesheet" href="./css/styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DebtPilot – Sign Up</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="bg-finance" aria-hidden="true"></div>
-<div class="orb o2" style="right:-220px; top:40px"></div>
-    <div class="orb o3" style="left:20%; bottom:-220px"></div>
-  </div>
-  <div class="grid-overlay" aria-hidden="true"></div>
-  <div class="layer">
-
-  <header class="nav">
+  <header class="navbar">
     <div class="container nav-inner">
-      <a class="brand" href="./index.html">
-<div>
-          <h1>DebtPilot</h1>
-          <small>Secure access</small>
-        </div>
-      </a>
-      <div class="nav-links">
-        <a href="./index.html">Home</a>
-        <a class="btn" href="./login.html">Login</a>
+      <div class="logo">
+        <span style="font-weight:800;color:#e0373f;">DebtPilot</span>
+      </div>
+      <!-- Removed top navigation items -->
+      <div class="auth-links">
+        <a href="login.html" class="btn btn-secondary">Login</a>
+        <a href="signup.html" class="btn btn-primary">Sign Up</a>
       </div>
     </div>
   </header>
-
-  <main class="form-wrap">
-    <div class="card pad form-card">
-      <h2 style="margin:0 0 6px">Create your account</h2>
-      <p class="small" style="margin:0 0 14px">Start tracking cards and build a payoff plan.</p>
-
-      <form id="signupForm">
-        <div class="field">
-          <div class="label">Email</div>
-          <input class="input" id="email" type="email" required placeholder="name@email.com" />
+  <div class="auth-container">
+    <div class="auth-box">
+      <h2>Create your account</h2>
+      <form id="signup-form">
+        <div>
+          <label for="signup-email">Email</label>
+          <input type="email" id="signup-email" placeholder="you@example.com" required />
         </div>
-        <div class="field">
-          <div class="label">Password</div>
-          <input class="input" id="password" type="password" required placeholder="••••••••" />
+        <div>
+          <label for="signup-password">Password</label>
+          <input type="password" id="signup-password" placeholder="Create a password" required />
         </div>
-
-        <button class="btn primary" style="width:100%; margin-top:6px" type="submit">
-          <span class="dot"></span>Create account
-        </button>
+        <button type="submit" class="btn btn-primary">Create account</button>
       </form>
-
-      <div class="sep"></div>
-      <div class="small">
-        Already have an account? <a href="./login.html" style="color:rgba(26,224,158,.92)">Log in</a>
+      <div class="auth-footer">
+        Already have an account? <a href="login.html">Log in</a>
       </div>
     </div>
-  </main>
-
   </div>
-  <div id="toast" role="status" aria-live="polite"></div>
-<script type="module" src="./js/auth-page.js"></script>
-
-<footer class="site-footer">
-  <div class="footer-inner">
-    <span>© <span id="year"></span> DebtPilot. All rights reserved.</span>
-    <span class="divider">•</span>
-    <span>Designed by <strong>Basit A.</strong></span>
-  </div>
-</footer>
-<script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>
-
+  <!-- Include authentication module -->
+  <script type="module">
+    import { handleSignup } from './js/auth.js';
+    const form = document.getElementById('signup-form');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      handleSignup(form);
+    });
+  </script>
 </body>
 </html>
